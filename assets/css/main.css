@@ -850,7 +850,7 @@ button,
   color: rgba(255, 255, 255, 0.5);
   left: 4em;
   opacity: 0.5;
-  position: relative; }
+  position: absolute; }
   #footer .icons {
     margin: 0 0 0.5em 0; }
   #footer .copyright {
@@ -926,4 +926,132 @@ input[type="number"] {
 }
 .workout-box p {
   margin: 0;
+}
+.footer-circle {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ddd;
+  text-align: center;
+  margin: 0 15px;
+  overflow: hidden;
+}
+
+.footer-circle img {
+  width: 100%;
+  height: auto;
+}
+
+.footer-circle p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.footer-circle {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ddd;
+  text-align: center;
+  margin: 0 15px;
+  overflow: hidden;
+}
+
+.footer-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.footer-circle p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.developer {
+  display: inline-block;
+  text-align: center;
+  margin: 0 15px;
+}
+
+.developer-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.developer h4 {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.footer-circle {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ddd;
+  text-align: center;
+  margin: 0 15px;
+  overflow: hidden;
+}
+
+.footer-circle img {
+  width: 100%;
+  height: auto;
+}
+
+.footer-circle p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.developer {
+  display: inline-block;
+  text-align: center;
+  margin: 0 15px;
+}
+
+.developer-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.developer h4 {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.website-link {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #000;
+}
+
+.section-separator {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+.date-section {
+  margin-bottom: 20px;
+}
+
+.date-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.date-section input {
+  padding: 5px;
+  width: 13%;
+  box-sizing: border-box;
+  color: black; /* Set text color to black */
 }
