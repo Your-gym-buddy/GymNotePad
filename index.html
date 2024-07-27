@@ -6,6 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <style>
+        input[type="text"]#workout-name {
+            color: white; /* Set the text color to white for workout name */
+        }
+        input[type="number"],
+        input[type="date"] {
+            color: black; /* Set the text color to black for number inputs and date inputs */
+        }
+        .actions li {
+            margin-right: 20px; /* Add space between the buttons */
+        }
+        .actions li:last-child {
+            margin-right: 0; /* Remove margin from the last item */
+        }
+        .workout-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            color: black; /* Ensure text color is black */
+        }
+        .workout-box h3 {
+            font-weight: bold;
+        }
+        .workout-box p {
+            margin: 0;
+        }
+    </style>
 </head>
 <body class="is-preload">
 
@@ -15,7 +45,7 @@
         <!-- Header -->
         <header id="header">
             <h1>Workout Notepad</h1>
-            <p>Track your workouts, reps, and sets easily.</p>
+            <p>Track your workouts, reps, sets, and calories burned easily.</p>
         </header>
 
         <!-- Main -->
@@ -25,19 +55,28 @@
             <section id="content" class="main">
                 <form id="workout-form">
                     <div class="field">
+                        <label for="workout-date">Workout Date</label>
+                        <input type="date" id="workout-date" name="workout-date" required />
+                    </div>
+                    <div class="field">
                         <label for="workout-name">Workout Name</label>
                         <input type="text" id="workout-name" name="workout-name" required />
+                    </div>
+                    <div class="field">
+                        <label for="sets">Sets</label>
+                        <input type="number" id="sets" name="sets" required />
                     </div>
                     <div class="field">
                         <label for="reps">Reps</label>
                         <input type="number" id="reps" name="reps" required />
                     </div>
                     <div class="field">
-                        <label for="sets">Sets</label>
-                        <input type="number" id="sets" name="sets" required />
+                        <label for="calories">Calories burned</label>
+                        <input type="number" id="calories" name="calories" required />
                     </div>
                     <ul class="actions">
-                        <li><input type="submit" value="Save Workout" class="primary" /></li>
+                        <li><input type="submit" value="Save Workout" class="primary save-btn" /></li>
+                        <li><input type="button" value="Reset Workout" id="reset-button" class="primary save-btn" /></li>
                     </ul>
                 </form>
                 <hr />
@@ -57,7 +96,7 @@
                     <dt>Phone</dt>
                     <dd>(000) 000-0000 x 0000</dd>
                     <dt>Email</dt>
-                    <dd><a href="#">info@untitled.tld</a></dd>
+                    <dd><a href="mailto:info@untitled.tld">info@untitled.tld</a></dd>
                 </dl>
                 <ul class="icons">
                     <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
@@ -71,11 +110,49 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const workoutForm = document.getElementById('workout-form');
+            const workoutList = document.getElementById('workout-list');
+            const resetButton = document.getElementById('reset-button');
+
+            function displayWorkouts() {
+                const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+                workoutList.innerHTML = workouts.map(workout => `
+                    <div class="workout-box">
+                        <h3>${workout.name}</h3>
+                        <p>Date: ${workout.date}</p>
+                        <p>Sets: ${workout.sets} | Reps: ${workout.reps} | Calories burned: ${workout.calories}</p>
+                    </div>
+                `).join('');
+            }
+
+            workoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const workoutDate = document.getElementById('workout-date').value;
+                const workoutName = document.getElementById('workout-name').value;
+                const sets = document.getElementById('sets').value;
+                const reps = document.getElementById('reps').value;
+                const calories = document.getElementById('calories').value;
+
+                const workout = { date: workoutDate, name: workoutName, sets: sets, reps: reps, calories: calories };
+                const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+                workouts.push(workout);
+                localStorage.setItem('workouts', JSON.stringify(workouts));
+
+                workoutForm.reset();
+                displayWorkouts();
+            });
+
+            resetButton.addEventListener('click', () => {
+                localStorage.removeItem('workouts');
+                workoutForm.reset();
+                displayWorkouts();
+            });
+
+            displayWorkouts();
+        });
+    </script>
 
 </body>
 </html>
