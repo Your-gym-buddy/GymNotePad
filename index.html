@@ -7,35 +7,7 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="assets/css/custom.css" />
-    <style>
-        input[type="text"]#workout-name {
-            color: white; /* Set the text color to white for workout name */
-        }
-        input[type="number"],
-        input[type="date"] {
-            color: black; /* Set the text color to black for number inputs and date inputs */
-        }
-        .actions li {
-            margin-right: 20px; /* Add space between the buttons */
-        }
-        .actions li:last-child {
-            margin-right: 0; /* Remove margin from the last item */
-        }
-        .workout-box {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            color: black; /* Ensure text color is black */
-        }
-        .workout-box h3 {
-            font-weight: bold;
-        }
-        .workout-box p {
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body class="is-preload">
 
@@ -53,11 +25,11 @@
 
             <!-- Form -->
             <section id="content" class="main">
+                <div class="date-section">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required />
+                </div>
                 <form id="workout-form">
-                    <div class="field">
-                        <label for="workout-date">Workout Date</label>
-                        <input type="date" id="workout-date" name="workout-date" required />
-                    </div>
                     <div class="field">
                         <label for="workout-name">Workout Name</label>
                         <input type="text" id="workout-name" name="workout-name" required />
@@ -86,29 +58,38 @@
 
         </div>
 
+        <!-- Separator -->
+        <hr class="section-separator" />
+
         <!-- Footer -->
         <footer id="footer">
             <section>
-                <h2>Contact</h2>
-                <dl class="alt">
-                    <dt>Address</dt>
-                    <dd>1234 Somewhere Road &bull; Nashville, TN 00000 &bull; USA</dd>
-                    <dt>Phone</dt>
-                    <dd>(000) 000-0000 x 0000</dd>
-                    <dt>Email</dt>
-                    <dd><a href="mailto:info@untitled.tld">info@untitled.tld</a></dd>
-                </dl>
-                <ul class="icons">
-                    <li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
-                    <li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>
-                    <li><a href="#" class="icon brands fa-instagram alt"><span class="label">Instagram</span></a></li>
-                    <li><a href="#" class="icon brands fa-linkedin-in alt"><span class="label">LinkedIn</span></a></li>
-                </ul>
+                <h2>Meet our developers</h2>
+                <div class="developer">
+                    <img class="developer-img" src="Test.png" alt="Abdullatif Elmuaqqat" />
+                    <h4>Abdullatif Elmuaqqat</h4>
+                    <a class="btn btn-dark btn-social mx-2" onclick="window.open('https://www.linkedin.com/in/abdullatif-elmuaqqat/')" aria-label="Abdullatif Elmuaqqat LinkedIn Profile">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+                <div class="developer">
+                    <img class="developer-img" src="Test.png" alt="Developer 2" />
+                    <h4>Developer 2</h4>
+                    <a class="btn btn-dark btn-social mx-2" onclick="window.open('https://www.linkedin.com/in/developer2/')" aria-label="Developer 2 LinkedIn Profile">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
+                <div class="developer">
+                    <img class="developer-img" src="Test.png" alt="Developer 3" />
+                    <h4>Developer 3</h4>
+                    <a class="btn btn-dark btn-social mx-2" onclick="window.open('https://www.linkedin.com/in/developer3/')" aria-label="Developer 3 LinkedIn Profile">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
             </section>
         </footer>
-
+    
     </div>
-
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -121,21 +102,20 @@
                 workoutList.innerHTML = workouts.map(workout => `
                     <div class="workout-box">
                         <h3>${workout.name}</h3>
-                        <p>Date: ${workout.date}</p>
-                        <p>Sets: ${workout.sets} | Reps: ${workout.reps} | Calories burned: ${workout.calories}</p>
+                        <p>Date: ${workout.date} | Sets: ${workout.sets} | Reps: ${workout.reps} | Calories burned: ${workout.calories}</p>
                     </div>
                 `).join('');
             }
 
             workoutForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const workoutDate = document.getElementById('workout-date').value;
+                const date = document.getElementById('date').value;
                 const workoutName = document.getElementById('workout-name').value;
                 const sets = document.getElementById('sets').value;
                 const reps = document.getElementById('reps').value;
                 const calories = document.getElementById('calories').value;
 
-                const workout = { date: workoutDate, name: workoutName, sets: sets, reps: reps, calories: calories };
+                const workout = { date: date, name: workoutName, sets: sets, reps: reps, calories: calories };
                 const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
                 workouts.push(workout);
                 localStorage.setItem('workouts', JSON.stringify(workouts));
