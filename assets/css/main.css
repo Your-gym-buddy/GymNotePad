@@ -891,3 +891,39 @@ button,
       left: auto;
       margin: 1em 0 0 0;
       position: relative; } }
+
+.save-btn {
+  /* Other styles for save button */
+  margin-top: 20px; /* Adjust the value as needed */
+}
+
+.reset-btn {
+  /* Other styles for reset button */
+  margin-bottom: 200px; /* Adjust the value as needed */
+}
+
+
+input[type="text"]#workout-name {
+  color: white; /* Set the text color to white for workout name */
+}
+input[type="number"] {
+  color: black; /* Set the text color to black for number inputs */
+}
+.actions li {
+  margin-right: 20px; /* Add space between the buttons */
+}
+.actions li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+.workout-box {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: rgb(255, 255, 255); /* Ensure text color is black */
+}
+.workout-box h3 {
+  font-weight: bold;
+}
+.workout-box p {
+  margin: 0;
+}
