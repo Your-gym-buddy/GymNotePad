@@ -46,10 +46,10 @@
                         <label for="calories">Calories burned</label>
                         <input type="number" id="calories" name="calories" required />
                     </div>
-                    <div class="actions">
-                        <button type="submit" class="primary save-btn">Save Workout</button>
-                        <button type="button" id="reset-button" class="primary reset-btn">Reset Workout</button>
-                    </div>
+                    <ul class="actions">
+                        <li><input type="submit" value="Save Workout" class="primary save-btn" /></li>
+                        <li><input type="button" value="Reset Workout" id="reset-button" class="primary save-btn" /></li>
+                    </ul>
                 </form>
                 <hr />
                 <h2>Saved Workouts</h2>
@@ -62,7 +62,7 @@
         <hr class="section-separator" />
 
         <!-- Footer -->
-        <footer id="footer">
+        <footer id="footer" class="footer-fixed-bottom">
             <section>
                 <h2>Meet our developers</h2>
                 <div class="developer">
@@ -90,6 +90,7 @@
         </footer>
     
     </div>
+
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
     <script>
@@ -99,16 +100,67 @@
             const resetButton = document.getElementById('reset-button');
 
             function displayWorkouts() {
-                const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
-                workoutList.innerHTML = workouts.map(workout => `
-                    <div class="workout-box">
-                        <h3>${workout.name}</h3>
-                        <p>Date: ${workout.date} | Sets: ${workout.sets} | Reps: ${workout.reps} | Calories burned: ${workout.calories}</p>
+                const workoutData = JSON.parse(localStorage.getItem('workoutData')) || {};
+                workoutList.innerHTML = Object.keys(workoutData).map(date => `
+                    <div class="workout-date">
+                        <h3>${date}</h3>
+                        ${workoutData[date].map((workout, index) => `
+                            <div class="workout-box">
+                                <p>Workout: ${workout.name} | Sets: ${workout.sets} | Reps: ${workout.reps} | Calories burned: ${workout.calories}</p>
+                                <button class="delete-btn" data-date="${date}" data-index="${index}">Delete</button>
+                            </div>
+                        `).join('')}
                     </div>
                 `).join('');
+
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', deleteWorkout);
+                });
             }
 
+            function deleteWorkout(event) {
+                const date = event.target.getAttribute('data-date');
+                const index = event.target.getAttribute('data-index');
+                const workoutData = JSON.parse(localStorage.getItem('workoutData')) || {};
 
+                workoutData[date].splice(index, 1);
+                if (workoutData[date].length === 0) {
+                    delete workoutData[date];
+                }
+
+                localStorage.setItem('workoutData', JSON.stringify(workoutData));
+                displayWorkouts();
+            }
+
+            workoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const date = document.getElementById('date').value;
+                const workoutName = document.getElementById('workout-name').value;
+                const sets = document.getElementById('sets').value;
+                const reps = document.getElementById('reps').value;
+                const calories = document.getElementById('calories').value;
+
+                const workout = { name: workoutName, sets: sets, reps: reps, calories: calories };
+                const workoutData = JSON.parse(localStorage.getItem('workoutData')) || {};
+
+                if (!workoutData[date]) {
+                    workoutData[date] = [];
+                }
+                workoutData[date].push(workout);
+                localStorage.setItem('workoutData', JSON.stringify(workoutData));
+
+                workoutForm.reset();
+                displayWorkouts();
+            });
+
+            resetButton.addEventListener('click', () => {
+                localStorage.removeItem('workoutData');
+                workoutForm.reset();
+                displayWorkouts();
+            });
+
+            displayWorkouts();
+        });
     </script>
 
 </body>
