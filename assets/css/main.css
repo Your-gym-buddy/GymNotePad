@@ -898,7 +898,7 @@ button,
   -webkit-transition: opacity 0.5s ease-in-out;
   -ms-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
-  bottom: 4em;
+  bottom: 0;
   color: rgba(255, 255, 255, 0.5);
   left: 4em;
   opacity: 0.5;
