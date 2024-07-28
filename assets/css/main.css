@@ -894,6 +894,19 @@ button,
 
 /* Footer */
 #footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+  width: 100%;
+  bottom: 0;
+  opacity: 0.5;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+/*#footer {
   -moz-transition: opacity 0.5s ease-in-out;
   -webkit-transition: opacity 0.5s ease-in-out;
   -ms-transition: opacity 0.5s ease-in-out;
@@ -902,7 +915,7 @@ button,
   color: rgba(255, 255, 255, 0.5);
   left: 4em;
   opacity: 0.5;
-  position: fixed; }
+  position: fixed; }*/
   #footer .icons {
     margin: 0 0 0.5em 0; }
   #footer .copyright {
