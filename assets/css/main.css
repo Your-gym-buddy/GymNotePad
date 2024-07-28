@@ -785,19 +785,19 @@ button,
 /* Header section */
 #header {
   text-align: center;
-  padding: 2em 0;
-  background-color: #282c34;
+  padding: 3em 0;
+  background-color:none;
   color: white;
 }
 
 #header h1 {
   margin: 0;
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 #header p {
-  margin: 0.5em 0 0;
-  font-size: 1.25rem;
+  margin: 1em 0 0;
+  font-size: 1rem;
 }
 
 /* Main content section */
@@ -1024,7 +1024,7 @@ input[type="number"] {
 
 .date-section input {
   padding: 5px;
-  width: 12%;
+  width: 15%;
   box-sizing: border-box;
   color: black; /* Set text color to black */
 }
@@ -1066,4 +1066,36 @@ input[type="number"] {
 
 .delete-btn:hover {
   background-color: #cc0000;
+}
+
+.workout-date {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.workout-box {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.workout-box p {
+  margin: 0;
+}
+
+.delete-btn {
+  background-color: #ff4d4d;
+  color: #fff;
+  border:#fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #e60000;
 }
