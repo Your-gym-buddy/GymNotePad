@@ -1,52 +1,237 @@
-/* Ensure the HTML and body take up the full height of the page */
-html, body {
-  height: 100%;
+/* Import Google Fonts and Font Awesome */
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("fontawesome-all.min.css");
+
+/* Reset some default browser styles */
+html, body, div, span, applet, object,
+iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+pre, a, abbr, acronym, address, big, cite,
+code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b,
+u, i, center, dl, dt, dd, ol, ul, li, fieldset,
+form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output, ruby,
+section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-/* Main wrapper to use Flexbox */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Basic */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  -webkit-text-size-adjust: none;
+  -ms-overflow-style: scrollbar;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #000;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Roboto", sans-serif;
+  font-size: 16pt;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.65em;
+  padding: 6em 4em 4em 4em;
+}
+
+@media screen and (max-width: 1680px) {
+  body {
+    padding: 6em 3.5em 3.5em 3.5em;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  body {
+    padding: 5em 2em 2em 2em;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  body {
+    padding: 5em 1.25em 1.25em 1.25em;
+  }
+}
+
+#bg {
+  -moz-transition: opacity 2s ease-in-out;
+  -webkit-transition: opacity 2s ease-in-out;
+  -ms-transition: opacity 2s ease-in-out;
+  transition: opacity 2s ease-in-out;
+  height: 100%;
+  left: 0;
+  opacity: 0.375;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#bg div {
+  -moz-transition: opacity 3s ease;
+  -webkit-transition: opacity 3s ease;
+  -ms-transition: opacity 3s ease;
+  transition: opacity 3s ease;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 150%;
+}
+
+#bg div.visible {
+  -moz-animation: bg 45s linear infinite;
+  -webkit-animation: bg 45s linear infinite;
+  -ms-animation: bg 45s linear infinite;
+  animation: bg 45s linear infinite;
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+@-moz-keyframes bg {
+  0% { -moz-transform: translateX(0); -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+  100% { -moz-transform: translateX(-25%); -webkit-transform: translateX(-25%); -ms-transform: translateX(-25%); transform: translateX(-25%); }
+}
+
+@-webkit-keyframes bg {
+  0% { -moz-transform: translateX(0); -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+  100% { -moz-transform: translateX(-25%); -webkit-transform: translateX(-25%); -ms-transform: translateX(-25%); transform: translateX(-25%); }
+}
+
+@-ms-keyframes bg {
+  0% { -moz-transform: translateX(0); -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+  100% { -moz-transform: translateX(-25%); -webkit-transform: translateX(-25%); -ms-transform: translateX(-25%); transform: translateX(-25%); }
+}
+
+@keyframes bg {
+  0% { -moz-transform: translateX(0); -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+  100% { -moz-transform: translateX(-25%); -webkit-transform: translateX(-25%); -ms-transform: translateX(-25%); transform: translateX(-25%); }
+}
+
+/* Flexbox Wrapper */
 #wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Header section */
-#header {
-  text-align: center;
-  padding: 2em 0;
-  background-color: #282c34;
-  color: white;
-}
-
-#header h1 {
-  margin: 0;
-  font-size: 3rem;
-}
-
-#header p {
-  margin: 0.5em 0 0;
-  font-size: 1.25rem;
-}
-
 /* Main content section */
 #main {
   flex: 1;
-  padding: 2em;
 }
 
-.date-section, .field, .actions {
+/* Footer section */
+#footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+  margin-top: auto;
+}
+
+#footer h2 {
+  margin: 0 0 1em 0;
+}
+
+.developer {
+  display: inline-block;
+  margin: 0 1em;
+  text-align: center;
+}
+
+.developer-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.developer h4 {
+  margin: 0.5em 0 0;
+}
+
+.btn-social {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .developer {
+    display: block;
+    margin: 1em 0;
+  }
+}
+
+/* Additional styles */
+.date-section {
+  margin-bottom: 20px;
+}
+
+.date-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.date-section input {
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  color: black;
+}
+
+.field {
   margin-bottom: 1em;
 }
 
-.field label, .date-section label {
+.field label {
   display: block;
   margin-bottom: 0.5em;
   color: white;
 }
 
-.field input, .date-section input {
+.field input {
   width: 100%;
   padding: 0.5em;
   box-sizing: border-box;
@@ -94,43 +279,155 @@ html, body {
   border: 0;
   border-top: 1px solid #ddd;
 }
-/* Footer section */
-#footer {
-  background-color: #282c34;
-  color: white;
-  text-align: center;
-  padding: 1em 0;
-  margin-top: auto; /* Ensure the footer stays at the bottom */
+
+.save-btn {
+  /* Other styles for save button */
+  margin-top: 20px; /* Adjust the value as needed */
 }
 
-#footer h2 {
-  margin: 0 0 1em 0;
+.reset-btn {
+  /* Other styles for reset button */
+  margin-bottom: 200px; /* Adjust the value as needed */
+}
+
+input[type="text"]#workout-name {
+  color: white; /* Set the text color to white for workout name */
+}
+
+input[type="number"] {
+  color: black; /* Set the text color to black for number inputs */
+}
+
+.actions li {
+  margin-right: 20px; /* Add space between the buttons */
+}
+
+.actions li:last-child {
+  margin-right: 0; /* Remove margin from the last item */
+}
+
+.workout-box {
+  border: 1px solid #ddd;
+  margin: 10px 0;
+  border-radius: 5px;
+  color: rgb(255, 255, 255); /* Ensure text color is black */
+}
+
+.workout-box h3 {
+  font-weight: bold;
+}
+
+.workout-box p {
+  margin: 0;
+}
+
+.footer-circle {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ddd;
+  text-align: center;
+  margin: 0 15px;
+  overflow: hidden;
+}
+
+.footer-circle img {
+  width: 100%;
+  height: auto;
+}
+
+.footer-circle p {
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .developer {
   display: inline-block;
-  margin: 0 1em;
   text-align: center;
+  margin: 0 15px;
 }
 
 .developer-img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
 }
 
 .developer h4 {
-  margin: 0.5em 0 0;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
-.btn-social {
-  color: white;
+.website-link {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #000;
 }
 
+.section-separator {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+
+/* Responsive design for developers section */
 @media (max-width: 768px) {
   .developer {
-    display: block;
-    margin: 1em 0;
+      display: block;
+      margin: 20px auto;
+  }
+
+  .developer-img {
+      width: 100px;
+      height: 100px;
+  }
+
+  .developer h4 {
+      font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .developer-img {
+      width: 80px;
+      height: 80px;
+  }
+
+  .developer h4 {
+      font-size: 14px;
+  }
+}
+
+.date-section input {
+  padding: 5px;
+  width: 12%;
+  box-sizing: border-box;
+  color: black; /* Set text color to black */
+}
+
+/* Responsive design for developers section */
+@media (max-width: 768px) {
+  .developer {
+      display: block;
+      margin: 20px auto;
+  }
+
+  .developer-img {
+      width: 100px;
+      height: 100px;
+  }
+
+  .developer h4 {
+      font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .developer-img {
+      width: 80px;
+      height: 80px;
   }
 }
