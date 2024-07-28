@@ -3,35 +3,6 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-document.addEventListener("DOMContentLoaded", () => {
-    const workoutForm = document.getElementById('workout-form');
-    const workoutList = document.getElementById('workout-list');
-
-    // Load saved workouts
-    const savedWorkouts = JSON.parse(localStorage.getItem('workouts')) || [];
-    savedWorkouts.forEach(workout => addWorkoutToList(workout));
-
-    workoutForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const workoutName = document.getElementById('workout-name').value;
-        const reps = document.getElementById('reps').value;
-        const sets = document.getElementById('sets').value;
-
-        const workout = { name: workoutName, reps: reps, sets: sets };
-        savedWorkouts.push(workout);
-        localStorage.setItem('workouts', JSON.stringify(savedWorkouts));
-        
-        addWorkoutToList(workout);
-        workoutForm.reset();
-    });
-
-    function addWorkoutToList(workout) {
-        const workoutItem = document.createElement('div');
-        workoutItem.classList.add('workout-item');
-        workoutItem.innerHTML = `<strong>${workout.name}</strong><br>Reps: ${workout.reps}, Sets: ${workout.sets}`;
-        workoutList.appendChild(workoutItem);
-    }
-});
 
 (function() {
 
