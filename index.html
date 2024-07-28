@@ -46,10 +46,10 @@
                         <label for="calories">Calories burned</label>
                         <input type="number" id="calories" name="calories" required />
                     </div>
-                    <ul class="actions">
-                        <li><input type="submit" value="Save Workout" class="primary save-btn" /></li>
-                        <li><input type="button" value="Reset Workout" id="reset-button" class="primary save-btn" /></li>
-                    </ul>
+                    <div class="actions">
+                        <button type="submit" class="primary save-btn">Save Workout</button>
+                        <button type="button" id="reset-button" class="primary reset-btn">Reset Workout</button>
+                    </div>
                 </form>
                 <hr />
                 <h2>Saved Workouts</h2>
@@ -92,9 +92,7 @@
     </div>
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
-
     <script>
-    
         document.addEventListener('DOMContentLoaded', (event) => {
             const workoutForm = document.getElementById('workout-form');
             const workoutList = document.getElementById('workout-list');
