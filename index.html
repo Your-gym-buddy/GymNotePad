@@ -134,6 +134,46 @@
             displayWorkouts();
         });
     </script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const workoutForm = document.getElementById('workout-form');
+    const workoutList = document.getElementById('workout-list');
+    const resetButton = document.getElementById('reset-button');
+
+    function displayWorkouts() {
+        const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+        workoutList.innerHTML = workouts.map(workout => `
+            <div class="workout-box">
+                <h3>${workout.name}</h3>
+                <p>Date: ${workout.date} | Sets: ${workout.sets} | Reps: ${workout.reps} | Calories burned: ${workout.calories}</p>
+            </div>
+        `).join('');
+    }
+
+    workoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const date = document.getElementById('date').value;
+        const workoutName = document.getElementById('workout-name').value;
+        const sets = document.getElementById('sets').value;
+        const reps = document.getElementById('reps').value;
+        const calories = document.getElementById('calories').value;
+
+        const workout = { date: date, name: workoutName, sets: sets, reps: reps, calories: calories };
+        const workouts = JSON.parse(localStorage.getItem('workouts')) || [];
+        workouts.push(workout);
+        localStorage.setItem('workouts', JSON.stringify(workouts));
+
+        workoutForm.reset();
+        displayWorkouts();
+    });
+
+    resetButton.addEventListener('click', () => {
+        localStorage.removeItem('workouts');
+        workoutForm.reset();
+        displayWorkouts();
+    });
+
+    displayWorkouts();
+});
 
 </body>
 </html>
